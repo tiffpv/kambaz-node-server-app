@@ -16,7 +16,8 @@ export const findUserByUsername = (username) =>  model.findOne({ username: usern
 export const findUserByCredentials = async (username, password) =>  {
   console.log("📂 Collection being queried:", model.collection.name);
   const user = await model.findOne({ username });
-  console.log("🧪 DAO found user by username:", user);
+  console.log("🧾 All users in DB:", users);
+  //console.log("🧪 DAO found user by username:", user);
   if (user && user.password === password) {
     return user;
   }

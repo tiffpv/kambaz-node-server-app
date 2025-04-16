@@ -12,7 +12,11 @@ import ModuleRoutes from "./Kambaz/Modules/routes.js";
 import AssignmentRoutes from "./Kambaz/Assignments/routes.js";
 
 const CONNECTION_STRING = process.env.MONGO_CONNECTION_STRING || "mongodb://127.0.0.1:27017/kambaz"
-mongoose.connect(CONNECTION_STRING);
+mongoose.connect(CONNECTION_STRING)
+    .then(() => {
+    console.log("✅ MongoDB connected");
+    console.log("📡 Connected to DB:", CONNECTION_STRING); // 🔥 Add this here
+    })
 
 const app = express();
 app.use(

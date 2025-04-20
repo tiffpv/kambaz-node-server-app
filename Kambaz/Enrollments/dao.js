@@ -10,8 +10,14 @@ export async function findUsersForCourse(courseId) {
  return enrollments.map((e) => e.user);
 }
 export function enrollUserInCourse(user, course) {
-  const newEnrollment = { user, course, _id: `${user}-${course}` };
-  return model.create(newEnrollment);
+  return model.findOne({ user, course })
+    .then(existing => {
+      if (existing) {
+        return existing;
+      }
+      const newEnrollment = { user, course, _id: `${user}-${course}` };
+      return model.create(newEnrollment);
+    });
 }
 export function unenrollUserFromCourse(user, course) {
  return model.deleteOne({ user, course });
